@@ -1,0 +1,14 @@
+
+{
+  "version": 2,
+  "public": true,
+  "name": "angular-ssr-example",
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/api" }
+  ],
+  "functions": {
+    "api/index.js": {
+      "includeFiles": "dist/angular-ssr-2/browser/**"
+    }
+  }
+}
