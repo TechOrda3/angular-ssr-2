@@ -10,7 +10,7 @@
     "dev:ssr": "ng run angular-ssr-2:serve-ssr",
     "serve:ssr": "node dist/angular-ssr-2/server/main.js",
     "build:ssr": "ng build && ng run angular-ssr-2:server",
-    "prerender": "ng run angular-ssr-2:prerender",
+    "prerender": "npx ts-node dynamic-routes.ts && ng run angular-ssr-2:prerender --routes-file users.txt",
     "vercel-build": "npm run build:ssr"
   },
   "private": true,

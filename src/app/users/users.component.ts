@@ -3,6 +3,8 @@ import {AsyncPipe, isPlatformBrowser, NgForOf} from '@angular/common';
 import {HttpClient} from '@angular/common/http';
 import {RouterLinkWithHref} from '@angular/router';
 import {Meta, Title} from '@angular/platform-browser';
+import {UserService} from '../user.service';
+import {LOCAL_STORAGE} from '../token';
 
 @Component({
   selector: 'app-users',
@@ -19,17 +21,15 @@ export class UsersComponent implements OnInit {
   private meta = inject(Meta);
   private title = inject(Title);
   private platformId = inject(PLATFORM_ID);
+  private userService = inject(UserService);
+  private storage = inject(LOCAL_STORAGE);
 
-  private http = inject(HttpClient);
-  users = this.http.get<any>('https://jsonplaceholder.typicode.com/users');
+  users = this.userService.getUsers();
 
   constructor() { }
 
   ngOnInit(): void {
-
-    if (isPlatformBrowser(this.platformId)) {
-      localStorage.setItem('some key', 'some value')
-    }
+    this.storage?.setItem('some key', 'some value');
 
     // this.meta.addTag({
     //   property: 'description',
